@@ -10,10 +10,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
 
 @SpringBootApplication
 @EntityScan("com.bytecode.tratcms.model.entity")
 @EnableJpaRepositories(basePackages = "com.bytecode.tratcms.repository.jpa")
+@Transactional
 public class Application implements CommandLineRunner {
 
 	private Log logger = LogFactory.getLog(getClass());
@@ -23,6 +27,9 @@ public class Application implements CommandLineRunner {
 
 	@Autowired
 	private JpaCategoriaRepository jpaCategoriaRepository;
+
+	@Autowired
+	private EntityManager entityManager;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -36,7 +43,7 @@ public class Application implements CommandLineRunner {
 		/*Categoria categoria = new Categoria();
 		categoria.setDescripcion("Esta es una categoria de ejemplo");
 		categoria.setFecha(new Date());
-		categoria.setNombre("Ctegoria1");
+		categoria.setNombre("Categoria3");
 
 		categoria = jpaCategoriaRepository.save(categoria);*/
 
@@ -44,7 +51,7 @@ public class Application implements CommandLineRunner {
 		/*Categoria categoria;
 		categoria = jpaCategoriaRepository.findById(1).get();
 		categoria.setNombre("Actualizando ejemplo");
-		jpaCategoriaRepository.save(categoria);*/
+		jpaCategoriaRepository.save(categoria); */
 
 		//OBTENER
 		/*jpaCategoriaRepository.findAll()
@@ -55,5 +62,28 @@ public class Application implements CommandLineRunner {
 		//BORRAR
 		//jpaCategoriaRepository.deleteById(1);
 
+		//Buscando por categoria
+		/*categoria = jpaCategoriaRepository.findByNombre("Categoria2").get();
+		logger.info("La categoria es: " + categoria.getIdCategoria());*/
+
+		/*jpaCategoriaRepository.findByNombreLike("C")
+				.forEach(categoria1 -> {
+					logger.info("La categoria es: " + categoria1.getIdCategoria1());
+				});*/
+
+		//USANDO ENTITY MANAGER
+		/*Categoria categoria = new Categoria();
+
+		categoria.setDescripcion("Usando EntityManager");
+		categoria.setNombre("CategoriaNueva");
+		categoria.setFecha(new Date());
+		//Iniciamos transaccion
+		entityManager.persist(categoria);*/
+		//Seleccionamos todos los ID en la BD
+		/*entityManager.createQuery("select c from Categoria c")
+				.getResultList()
+				.forEach(o -> {
+					logger.info(o);
+				}); */
 	}
 }
