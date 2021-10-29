@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TrastCMS
 Esta es una herramienta para la gestion de MContenido, totalmente escalable y gratuito escrito en Java y Spring Boot y MySQL.
 
@@ -22,3 +23,8 @@ Aun se encuentra en etapa de desarrollo.
 ## Esquema de base de datos
 Este es el esquema basico de nuestra base de datos el cual te la puedes descargar
 ![Esquema](https://raw.githubusercontent.com/DavidBrionesFF/TrastCMS/master/TrastCMS%20Model.JPG)
+=======
+# Star CMS
+Proyecto de gestion de contenido, escrito en Java, Spring Boot y MySQL.
+Orientado en la arquitectura de microservicios.
+>>>>>>> 6dc9822ef07da16094f2c095de8c4d1a4200c120
