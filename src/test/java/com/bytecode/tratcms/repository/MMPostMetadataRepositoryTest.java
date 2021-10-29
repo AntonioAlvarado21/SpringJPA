@@ -1,7 +1,7 @@
 package com.bytecode.tratcms.repository;
 
 import com.bytecode.tratcms.component.TestDatabaseConfiguration;
-import com.bytecode.tratcms.model.Permiso;
+import com.bytecode.tratcms.model.MPostMetadata;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -15,26 +15,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = {TestDatabaseConfiguration.class})
-public class PermisoRepositoryTest {
+public class MMPostMetadataRepositoryTest {
     @Autowired
-    private PermisoRepository repository;
+    private PostMetadataRepository repository;
 
     @Test
     public void testA(){
-        Permiso permiso = new Permiso();
-        permiso.setIdPermiso(1);
-        permiso.setNombre("Nuevo Permismo");
+        MPostMetadata MPostMetadata = new MPostMetadata();
+        MPostMetadata.setClave("Visitas");
+        MPostMetadata.setIdPost(1);
+        MPostMetadata.setTipo(Integer.class.getName());
+        MPostMetadata.setValor("13");
+        MPostMetadata.setIdPostMetadata(1);
 
-        Assert.assertTrue(repository.save(permiso));
+        Assert.assertTrue(repository.save(MPostMetadata));
     }
 
     @Test
     public void testB(){
-        Permiso permiso = new Permiso();
-        permiso.setIdPermiso(1);
-        permiso.setNombre("Nuevo Permismo2");
+        MPostMetadata MPostMetadata = new MPostMetadata();
+        MPostMetadata.setClave("Visitas");
+        MPostMetadata.setIdPost(1);
+        MPostMetadata.setTipo(Integer.class.getName());
+        MPostMetadata.setValor("18");
+        MPostMetadata.setIdPostMetadata(1);
 
-        Assert.assertTrue(repository.update(permiso));
+        Assert.assertTrue(repository.update(MPostMetadata));
     }
 
     @Test
@@ -44,6 +50,6 @@ public class PermisoRepositoryTest {
 
     @Test
     public void testD(){
-        Assert.assertTrue(repository.findById(1).getNombre().equalsIgnoreCase("Nuevo Permismo2"));
+        Assert.assertTrue(repository.findById(1).getValor().equalsIgnoreCase("19"));
     }
 }

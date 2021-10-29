@@ -1,7 +1,7 @@
 package com.bytecode.tratcms.repository;
 
 import com.bytecode.tratcms.component.TestDatabaseConfiguration;
-import com.bytecode.tratcms.model.Contenido;
+import com.bytecode.tratcms.model.MGrupo;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -15,40 +15,37 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = {TestDatabaseConfiguration.class})
-public class ContenidoRepositoryTest {
+public class MGrupoRepositoryTest {
 
     @Autowired
-    private ContenidoRepository repository;
+    private GrupoRepository grupoRepository;
 
     @Test
     public void testA(){
-        Contenido contenido = new Contenido();
-        contenido.setContenido("Hola");
-        contenido.setIdPost(3);
-        contenido.setTipo(String.class.getName());
-        contenido.setIdContenido(1);
+        MGrupo MGrupo = new MGrupo();
+        MGrupo.setIdgrupo(1);
+        MGrupo.setNombre("Grupo1");
 
-        Assert.assertTrue(repository.save(contenido));
+        Assert.assertTrue(grupoRepository.save(MGrupo));
     }
 
     @Test
     public void testB(){
-        Contenido contenido = new Contenido();
-        contenido.setContenido("HolaAA");
-        contenido.setIdPost(3);
-        contenido.setTipo(String.class.getName());
-        contenido.setIdContenido(3);
+        MGrupo MGrupo = new MGrupo();
+        MGrupo.setIdgrupo(1);
+        MGrupo.setNombre("Grupo2");
 
-        Assert.assertTrue(repository.update(contenido));
+        Assert.assertTrue(grupoRepository.update(MGrupo));
     }
 
     @Test
     public void testC(){
-        Assert.assertFalse(repository.findAll(new SpringDataWebProperties.Pageable()).isEmpty());
+        Assert.assertFalse(grupoRepository.findAll(new SpringDataWebProperties.Pageable()).isEmpty());
     }
 
     @Test
     public void testD(){
-        Assert.assertTrue(repository.findById(3).getContenido().equalsIgnoreCase("HolaAA"));
+        Assert.assertTrue(grupoRepository.findById(1).getNombre().equalsIgnoreCase("Grupo2"));
     }
+
 }

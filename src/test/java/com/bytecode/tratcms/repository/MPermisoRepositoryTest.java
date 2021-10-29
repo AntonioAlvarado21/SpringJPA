@@ -1,7 +1,7 @@
 package com.bytecode.tratcms.repository;
 
 import com.bytecode.tratcms.component.TestDatabaseConfiguration;
-import com.bytecode.tratcms.model.PostMetadata;
+import com.bytecode.tratcms.model.MPermiso;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -15,32 +15,26 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = {TestDatabaseConfiguration.class})
-public class PostMetadataRepositoryTest {
+public class MPermisoRepositoryTest {
     @Autowired
-    private PostMetadataRepository repository;
+    private PermisoRepository repository;
 
     @Test
     public void testA(){
-        PostMetadata postMetadata = new PostMetadata();
-        postMetadata.setClave("Visitas");
-        postMetadata.setIdPost(1);
-        postMetadata.setTipo(Integer.class.getName());
-        postMetadata.setValor("13");
-        postMetadata.setIdPostMetadata(1);
+        MPermiso MPermiso = new MPermiso();
+        MPermiso.setIdPermiso(1);
+        MPermiso.setNombre("Nuevo Permismo");
 
-        Assert.assertTrue(repository.save(postMetadata));
+        Assert.assertTrue(repository.save(MPermiso));
     }
 
     @Test
     public void testB(){
-        PostMetadata postMetadata = new PostMetadata();
-        postMetadata.setClave("Visitas");
-        postMetadata.setIdPost(1);
-        postMetadata.setTipo(Integer.class.getName());
-        postMetadata.setValor("18");
-        postMetadata.setIdPostMetadata(1);
+        MPermiso MPermiso = new MPermiso();
+        MPermiso.setIdPermiso(1);
+        MPermiso.setNombre("Nuevo Permismo2");
 
-        Assert.assertTrue(repository.update(postMetadata));
+        Assert.assertTrue(repository.update(MPermiso));
     }
 
     @Test
@@ -50,6 +44,6 @@ public class PostMetadataRepositoryTest {
 
     @Test
     public void testD(){
-        Assert.assertTrue(repository.findById(1).getValor().equalsIgnoreCase("19"));
+        Assert.assertTrue(repository.findById(1).getNombre().equalsIgnoreCase("Nuevo Permismo2"));
     }
 }

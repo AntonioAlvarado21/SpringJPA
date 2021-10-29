@@ -1,7 +1,7 @@
 package com.bytecode.tratcms.repository;
 
 import com.bytecode.tratcms.component.TestDatabaseConfiguration;
-import com.bytecode.tratcms.model.Comentario;
+import com.bytecode.tratcms.model.MComentario;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -15,32 +15,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = {TestDatabaseConfiguration.class})
-public class ComentarioRepositoryTest {
+public class MComentarioRepositoryTest {
     @Autowired
     private ComentarioRepository repository;
 
     @Test
     public void testA(){
-        Comentario comentario = new Comentario();
-        comentario.setComentario("ComentarioA");
-        comentario.setIdComentario(1);
-        comentario.setIdPost(3);
-        comentario.setIdUsuario(1);
-        comentario.setRespuesta(null);
+        MComentario MComentario = new MComentario();
+        MComentario.setComentario("ComentarioA");
+        MComentario.setIdComentario(1);
+        MComentario.setIdPost(3);
+        MComentario.setIdUsuario(1);
+        MComentario.setRespuesta(null);
 
-        Assert.assertTrue(repository.save(comentario));
+        Assert.assertTrue(repository.save(MComentario));
     }
 
     @Test
     public void testB(){
-        Comentario comentario = new Comentario();
-        comentario.setComentario("ComentarioB");
-        comentario.setIdComentario(1);
-        comentario.setIdPost(3);
-        comentario.setIdUsuario(1);
-        comentario.setRespuesta(null);
+        MComentario MComentario = new MComentario();
+        MComentario.setComentario("ComentarioB");
+        MComentario.setIdComentario(1);
+        MComentario.setIdPost(3);
+        MComentario.setIdUsuario(1);
+        MComentario.setRespuesta(null);
 
-        Assert.assertTrue(repository.update(comentario));
+        Assert.assertTrue(repository.update(MComentario));
     }
 
     @Test

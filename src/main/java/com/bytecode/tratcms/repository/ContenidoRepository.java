@@ -3,12 +3,11 @@ package com.bytecode.tratcms.repository;
 import java.util.List;
 
 import com.bytecode.tratcms.mapper.ContenidoMapper;
+import com.bytecode.tratcms.model.MContenido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import com.bytecode.tratcms.model.Contenido;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -25,7 +24,7 @@ public class ContenidoRepository implements ContenidoRep {
 	}
 
 	@Override
-	public boolean save(Contenido object) {
+	public boolean save(MContenido object) {
 		try {
 			String sql = String.format(
 					"insert into Contenido (Contenido,IdPost,Tipo) "
@@ -40,7 +39,7 @@ public class ContenidoRepository implements ContenidoRep {
 	}
 
 	@Override
-	public boolean update(Contenido object) {
+	public boolean update(MContenido object) {
 		if(object.getIdContenido()>0) {
 			String sql = String.format("update Contenido set Contenido='%s', Tipo='%s' where IdContenido='%d'",
 					object.getContenido(), object.getTipo(), object.getIdContenido());
@@ -51,12 +50,12 @@ public class ContenidoRepository implements ContenidoRep {
 	}
 
 	@Override
-	public List<Contenido> findAll(Pageable pageable) {
+	public List<MContenido> findAll(Pageable pageable) {
 		return jdbcTemplate.query("select * from contenido", new ContenidoMapper());
 	}
 
 	@Override
-	public Contenido findById(int Id) {
+	public MContenido findById(int Id) {
 		Object[] params = new Object[] {Id};
 		return jdbcTemplate.queryForObject("select * from contenido where IdContenido = ?",
 				params, new ContenidoMapper());
